@@ -1,6 +1,7 @@
 package StepDefinitions;
 
 import Pages.POM;
+import Pages.Parent;
 import Utilities.GWD;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -47,7 +48,7 @@ public class firstCaseSteps {
         pom.findAndClick("devamEt");
         pom.findAndClick("newAddress");
 
-        pom.findAndSend("adresBaslik","home adress");
+        pom.findAndSend("adresBaslik","homee addressess");
         pom.findAndSend("first_name","Ebubekir");
         pom.findAndSend("last_name","Sarigul");
         pom.findAndSend("phone_number","05523109552");
@@ -62,10 +63,15 @@ public class firstCaseSteps {
         pom.findAndClick("kaydetveDevamEt");
 
         pom.findAndSend("name","Ebubekir Sarıgül");
-        pom.findAndSend("cardNumber","5168404102984219");
+        pom.findAndSend("cardNumber","4758404102984219");
         pom.selectMenuValue("cardMonth","1");
         pom.selectMenuValue("cardYear","2025");
-        pom.findAndSend("cardCvv","842");
+        pom.findAndSend("cardCvv","746");
+
+        WebElement element = GWD.driver.findElement(By.xpath("//input[@id=\"agrement2\"]"));
+        Actions actions = new Actions(GWD.getDriver());
+        actions.moveToElement(element).click().build().perform();
+
         pom.findAndClick("siparisiTamamla");
 
     }
@@ -73,7 +79,10 @@ public class firstCaseSteps {
     @Then("verify that you are on the payment page")
     public void verifyThatYouAreOnThePaymentPage() {
 
-        pom.findAndContainsText("siparisiTamamla","Siparişi Tamamla");
+        Parent.waits(6);
+        String currentUrl = GWD.driver.getCurrentUrl();
+        System.out.println("currentUrl = " + currentUrl);
+        Assert.assertTrue(currentUrl.contains("akbank.com"));
 
     }
 }

@@ -72,7 +72,7 @@ public class Parent {
         js.executeScript("arguments[0].scrollIntoView();",element);
     }
 
-    public void waits(int second) {
+    public static void waits(int second) {
         try {
             Thread.sleep(second*500);
         } catch (InterruptedException e) {
